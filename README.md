@@ -1,8 +1,8 @@
 # Telegraf Metrix-Node
 
-Supports telegraf line protocol and sends metrics over udp (for now). Line protocol uses nano second precisious timestamp, we will let this stamping telegraf for now
+Supports telegraf line protocol and sends metrics over udp (for now). Line protocol uses nanosecond precision timestamp. You can add nanosecond timestamp as last parameter optionally since the version 1.1.4. If you omit this timestamp telegraf will add it based on its local time to your data. Sometimes you may want to add this timestamp to send data from the past
 
-I preper UDP protocol because its fault-tolera and not able to run async functions natively. I do not want to block my operations with TCP which has a handshake and many checks.
+I preper UDP protocol because its fault-tolerant, I do not want to block my operations with TCP which has a handshake and many checks
 
 Planning to support TCP by next versions. Also maintaining PHP version of metrix
 

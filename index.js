@@ -56,8 +56,8 @@ class Metrix {
     return true;
   }
 
-  send(measurement, tags, fields) {
-    var l = this.line(measurement, tags, fields);
+  send(measurement, tags, fields,timestamp=null) {
+    var l = this.line(measurement, tags, fields,timestamp);
     if (l!==false) {
         dgramClient.send(Buffer.from(l),this.target.port,this.target.host,(err)=>{
         // lets ignore all kind of errors to be more resilient
@@ -68,7 +68,7 @@ class Metrix {
   }
 
 
-  line(measurement, tags = null, fields = null) {
+  line(measurement, tags = null, fields = null,timestamp = null) {
     // measurement must be a string
     if (measurement && measurement.search(/[^a-zA-Z0-9_, .-]/) > -1) {
       this.l("invalid measurement", measurement);
@@ -128,7 +128,7 @@ class Metrix {
     // lets escape , and whitespace
     measurement = measurement.replace(/(,| )/g, m => "\\" + m);
 
-    return measurement+tagsPart+fieldsPart;
+    return measurement+tagsPart+fieldsPart+(timestamp!==null ? (' '+timestamp) : '');
   }
 
 
