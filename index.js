@@ -7,8 +7,8 @@ const dgram = require("dgram");
 const dgramClient = dgram.createSocket("udp4");
 
 class Metrix {
-  constructor(target="udp://127.0.0.1", appName=false, appVersion=false, debug = false) {
-    var parsed = url.parse(target);    
+  constructor(telegrafHost="udp://127.0.0.1", appName=false, appVersion=false, debug = false) {
+    var parsed = url.parse(telegrafHost);    
     if (!parsed.protocol || parsed.protocol !== "udp:")
       throw new Error("Invalid protocol by target");
     parsed.host = parsed.hostname || "127.0.0.1";
@@ -86,6 +86,7 @@ class Metrix {
           this.l("invalid tag key", ky);
           return false;
         }
+        if (!tags[ky]) continue
         var ky1 = ky.replace(/(,| |=)/g, m => "\\" + m);
         var vl1 = tags[ky].toString().replace(/(,| )/g, m => "\\" + m);
         tagsPart += "," + ky1 + "=" + vl1;

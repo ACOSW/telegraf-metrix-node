@@ -1,6 +1,6 @@
 {
   "name": "telegraf-metrix-node",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": " Telegraf UDP Client ",
   "main": "index.js",
   "scripts": {
@@ -11,5 +11,8 @@
   ],
   "author": "osm",
   "license": "MIT",
-  "repository":  { "type" : "git","url" : "https://github.com/taskinosman/telegraf-metrix-node"}
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taskinosman/telegraf-metrix-node"
+  }
 }
